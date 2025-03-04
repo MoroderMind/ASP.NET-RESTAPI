@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
+const string GetGameEndPointName = "GetGame";
+
 List<GameDTO> games = [
     new (1,"Street Fighter II", "Fighting", 19.99M, new DateOnly(1992,7,15)),
     new (2,"Final Fantasy XIV", "Roleplaying", 59.99M, new DateOnly (2010,9,30)),
@@ -17,8 +19,22 @@ List<GameDTO> games = [
 app.MapGet("games", () => games);
 
 // GET /games/1
+app.MapGet("games/{id}", (int id) => games.Find(game => game.Id == id))
+    .WithName(GetGameEndPointName);
 
-app.MapGet("games/{id}", (int id) => games.Find(game => game.Id == id));
+// POST /games
+app.MapPost("games", (CreateGameDTO newGame) =>
+{
+    GameDTO game = new GameDTO(
+        games.Count + 1,
+        newGame.Name,
+        newGame.Genre,
+        newGame.price,
+        newGame.ReleaseDate);
+    games.Add(game);
+
+    return Results.CreatedAtRoute(GetGameEndPointName, new {id = game.Id}, game);
+});
 
 
 app.Run();
