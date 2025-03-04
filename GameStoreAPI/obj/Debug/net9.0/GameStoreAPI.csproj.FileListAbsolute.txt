@@ -26,3 +26,4 @@ C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\refint\GameStoreAP
 C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\GameStoreAPI.pdb
 C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\GameStoreAPI.genruntimeconfig.cache
 C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\ref\GameStoreAPI.dll
+C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\GameStoreAPI.sourcelink.json
