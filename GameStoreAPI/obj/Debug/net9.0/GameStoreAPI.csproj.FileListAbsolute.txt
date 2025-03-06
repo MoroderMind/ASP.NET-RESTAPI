@@ -27,3 +27,9 @@ C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\GameStoreAPI.pdb
 C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\GameStoreAPI.genruntimeconfig.cache
 C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\ref\GameStoreAPI.dll
 C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\GameStoreAPI.sourcelink.json
+C:\Users\EMil\Desktop\GameStore\GameStoreAPI\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\EMil\Desktop\GameStore\GameStoreAPI\bin\Debug\net9.0\MinimalApis.Extensions.dll
+C:\Users\EMil\Desktop\GameStore\GameStoreAPI\bin\Debug\net9.0\MiniValidation.dll
+C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\GameStoreAPI.csproj.AssemblyReference.cache
+C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\GameStoreAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\EMil\Desktop\GameStore\GameStoreAPI\obj\Debug\net9.0\GameStor.46E39DB5.Up2Date
