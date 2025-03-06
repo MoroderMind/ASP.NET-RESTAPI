@@ -10,7 +10,7 @@ public static class GamesEndpoints
 {
     const string GetGameEndPointName = "GetGame";
 
-    private static readonly List<GameDTO> games = [
+    private static readonly List<GameSummaryDTO> games = [
         new (1,"Street Fighter II", "Fighting", 19.99M, new DateOnly(1992,7,15)),
         new (2,"Final Fantasy XIV", "Roleplaying", 59.99M, new DateOnly (2010,9,30)),
         new (3,"FIFA 23", "Sports", 69.99M, new DateOnly(2022, 9, 27))
@@ -25,11 +25,10 @@ public static class GamesEndpoints
         group.MapGet("/", () => games);
 
         // GET /games/1
-        group.MapGet("/{id}", (int id) =>
+        group.MapGet("/{id}", (int id, GameStoreContext dbContext) =>
         {
-            GameDTO? game = games.Find(game => game.Id == id);
-
-            return game is null ? Results.NotFound() : Results.Ok(game);
+            Game? game = dbContext.Games.Find(id);
+            return game is null ? Results.NotFound() : Results.Ok(game.ToGameDetailsDto());
 
         }).WithName(GetGameEndPointName);
 
@@ -37,31 +36,25 @@ public static class GamesEndpoints
         group.MapPost("/", (CreateGameDTO newGame, GameStoreContext dbContext) =>
         {
             Game game = newGame.ToEntity();
-            game.Genre = dbContext.Genres.Find(newGame.GenreId);    
-            
+
             dbContext.Games.Add(game);
             dbContext.SaveChanges();
 
-            return Results.CreatedAtRoute(GetGameEndPointName, new { id = game.Id }, game.ToDto());
+            return Results.CreatedAtRoute(GetGameEndPointName, new { id = game.Id }, game.ToGameDetailsDto());
         });
 
         // PUT /games
-        group.MapPut("/{id}", (int id, UpdateGameDTO updatedGame) =>
+        group.MapPut("/{id}", (int id, UpdateGameDTO updatedGame, GameStoreContext dbContext) =>
         {
-            var index = games.FindIndex(game => game.Id == id);
+            var existingGame = dbContext.Games.Find(id);
 
-            if (index == -1)
+            if (existingGame is null)
             {
                 return Results.NotFound();
             }
 
-            games[index] = new GameDTO(
-                id,
-                updatedGame.Name,
-                updatedGame.Genre,
-                updatedGame.Price,
-                updatedGame.ReleaseDate);
-
+            dbContext.Entry(existingGame).CurrentValues.SetValues(updatedGame.ToEntity(id));
+            dbContext.SaveChanges();
             return Results.NoContent();
         });
 
