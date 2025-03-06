@@ -3,6 +3,7 @@ using GameStoreAPI.Data;
 using GameStoreAPI.DTOs;
 using GameStoreAPI.Entities;
 using GameStoreAPI.Mapping;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameStoreAPI.Endpoints;
 
@@ -21,8 +22,13 @@ public static class GamesEndpoints
         // Using group, so we dont need to repeat ourselves with the endpoint /games
             // Known as a route group builder
         var group = app.MapGroup("games").WithParameterValidation();
+
         //  GET /games
-        group.MapGet("/", () => games);
+        group.MapGet("/", (GameStoreContext dbcontext) => 
+            dbcontext.Games
+                .Include(game => game.Genre)
+                .Select(game => game.ToGameSummaryDto())
+                .AsNoTracking());
 
         // GET /games/1
         group.MapGet("/{id}", (int id, GameStoreContext dbContext) =>
@@ -60,10 +66,12 @@ public static class GamesEndpoints
 
 
         // DELETE /game/1
-        group.MapDelete("/{id}", (int id) =>
+        group.MapDelete("/{id}", (int id, GameStoreContext dbContext) =>
         {
-            games.RemoveAll(game => game.Id == id);
-
+            dbContext.Games
+                     .Where(game => game.Id == id)
+                     .ExecuteDelete();
+    
             return Results.NoContent();
         });
         
