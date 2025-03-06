@@ -1,0 +1,36 @@
+# Visual Studio cache and build files
+.vs/
+bin/
+obj/
+debug/
+release/
+
+# User-specific settings
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Log files
+*.log
+
+# Database files
+*.db
+App_Data/
+
+# Configuration files (if containing secrets)
+secrets.json
+appsettings.Development.json
+
+# Package dependencies
+packages/
+node_modules/
+wwwroot/lib/
+
+# Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# Azure & deployment
+publish/
+*.publishsettings
