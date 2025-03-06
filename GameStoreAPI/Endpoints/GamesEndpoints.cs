@@ -17,7 +17,7 @@ public static class GamesEndpoints
     {
         // Using group, so we dont need to repeat ourselves with the endpoint /games
             // Known as a route group builder
-        var group = app.MapGroup("games");
+        var group = app.MapGroup("games").WithParameterValidation();
         //  GET /games
         group.MapGet("/", () => games);
 
@@ -42,8 +42,7 @@ public static class GamesEndpoints
             games.Add(game);
 
             return Results.CreatedAtRoute(GetGameEndPointName, new { id = game.Id }, game);
-        })
-        .WithParameterValidation();
+        });
 
         // PUT /games
         group.MapPut("/{id}", (int id, UpdateGameDTO updatedGame) =>
