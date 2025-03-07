@@ -89,7 +89,4 @@ To apply migrations and update the database:
 
 ---
 
-**Author:** Emil Dalgaard Moroder
-
-For any questions, feel free to reach out!
 
