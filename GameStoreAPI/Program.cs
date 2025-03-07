@@ -15,6 +15,8 @@ var app = builder.Build();
 // Calling our Endpoints file, that we created with all the functionality
 app.MapGameEndpoints();
 
+app.MapGenresEndpoints();
+
 // custom method that can be used to migrate the db
 await app.MigrateDbAsync();
 
