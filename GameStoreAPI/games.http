@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
     "name": "Minecraft",
-    "genre": "Kids and Family",
+    "genreId": 2,
     "price": 19.99,
     "releaseDate": "2011-11-18"
 }
@@ -24,7 +24,7 @@ Content-Type: application/json
 {
     "id": "2",
     "name": "Minecrafta",
-    "genre": "Kids and Family",
+    "genreId": 3,
     "price": 19.99,
     "releaseDate": "2011-11-18"
 }

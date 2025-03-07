@@ -16,6 +16,6 @@ var app = builder.Build();
 app.MapGameEndpoints();
 
 // custom method that can be used to migrate the db
-app.MigrateDb();
+await app.MigrateDbAsync();
 
 app.Run();
