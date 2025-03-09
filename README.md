@@ -88,5 +88,8 @@ To apply migrations and update the database:
 ```
 
 ---
+## Acknowledgments
+
+This project was created by following Julio Casal's excellent tutorial on building modern web applications with Blazor and .NET.
 
 
